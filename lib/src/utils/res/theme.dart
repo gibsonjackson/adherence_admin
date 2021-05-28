@@ -9,6 +9,6 @@ ThemeData _buildAppTheme() {
     accentColor: accentColor,
     primaryColor: primaryColor,
     primaryColorDark: primaryDarkColor,
-    scaffoldBackgroundColor: scaffoldBackColor,
+    // scaffoldBackgroundColor: scaffoldBackColor,
   );
 }
