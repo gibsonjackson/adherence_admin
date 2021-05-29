@@ -1,4 +1,4 @@
-import 'package:adherence_admin/src/features/home/presentation/widgets/pages/doctor_page.dart';
+import 'package:adherence_admin/src/features/home/presentation/pages/indi_pages/doctor_page.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsCard extends StatelessWidget {
@@ -7,7 +7,9 @@ class DoctorsCard extends StatelessWidget {
     openDoctorPage() {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => DoctorPage()),
+        MaterialPageRoute(
+          builder: (context) => DoctorPage(),
+        ),
       );
     }
 

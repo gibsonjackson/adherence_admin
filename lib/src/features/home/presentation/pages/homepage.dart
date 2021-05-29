@@ -1,3 +1,4 @@
+import 'package:adherence_admin/src/features/home/presentation/pages/add_pages/add_doctor.dart';
 import 'package:adherence_admin/src/features/home/presentation/widgets/homepage_lists.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,15 @@ import 'package:flutter_boom_menu/flutter_boom_menu.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    openAddDoctorPage() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AddDoctor(),
+        ),
+      );
+    }
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -42,7 +52,7 @@ class HomePage extends StatelessWidget {
               subtitle: "Add a doctor or medical professional",
               // subTitleColor: Colors.white,
               // backgroundColor: Colors.deepOrange,
-              onTap: () => print('FIRST CHILD'),
+              onTap: openAddDoctorPage,
             ),
             MenuItem(
               child: Icon(
