@@ -1,7 +1,11 @@
+import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
 import 'package:adherence_admin/src/features/home/presentation/pages/indi_pages/doctor_page.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsCard extends StatelessWidget {
+  final DoctorModel doctorModel;
+
+  const DoctorsCard({Key key, @required this.doctorModel}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     openDoctorPage() {
@@ -24,8 +28,8 @@ class DoctorsCard extends StatelessWidget {
         child: InkWell(
           onTap: openDoctorPage,
           child: ListTile(
-            title: Text("Aayush Jain"),
-            subtitle: Text("Psychologist"),
+            title: Text(doctorModel.name),
+            subtitle: Text(doctorModel.designation),
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

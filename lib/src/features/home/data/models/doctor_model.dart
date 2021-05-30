@@ -1,6 +1,20 @@
 import 'package:adherence_admin/src/utils/res/my_enums.dart';
 import 'package:adherence_admin/src/utils/res/utils.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+/**
+ *
+ *  {
+    "name": "endTime",
+    "email": "aaa",
+    "designation": "aaa",
+    "phone": "aaa",
+    "clinic": "aaa",
+    "startTime": "aa",
+    "endTime": "aa"
+}
+ */
 
 class DoctorModel {
   String _name;
@@ -70,4 +84,17 @@ class DoctorModel {
     data['role'] = Utils().getRole(this._role);
     return data;
   }
+
+  DoctorModel.fromJson(Map<String, dynamic> json) {
+    _name = json['name'];
+    _email = json['email'];
+    _designation = json['designation'];
+    _phone = json['phone'];
+    _clinic = json['clinic'];
+    _startTime = json['startTime'];
+    _endTime = json['endTime'];
+  }
+
+  DoctorModel.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromJson(snapshot.data);
 }

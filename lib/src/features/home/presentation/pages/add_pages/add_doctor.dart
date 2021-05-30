@@ -232,6 +232,8 @@ class _AddDoctorState extends State<AddDoctor> {
       padding: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
         controller: controller,
+        textCapitalization:
+            isEmail ? TextCapitalization.none : TextCapitalization.words,
         decoration: InputDecoration(
           isDense: true,
           labelText: title,

@@ -82,7 +82,7 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            HomepageLists(),
+            DoctorsList(),
             Icon(Icons.directions_transit),
             Icon(Icons.directions_bike),
           ],
