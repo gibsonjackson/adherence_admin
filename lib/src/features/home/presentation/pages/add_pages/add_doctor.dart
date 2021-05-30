@@ -1,3 +1,5 @@
+import 'package:adherence_admin/src/features/home/data/datasources/firebase_home_provider.dart';
+import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
 import 'package:weekday_selector/weekday_selector.dart';
@@ -12,13 +14,31 @@ class _AddDoctorState extends State<AddDoctor> {
   final values = List.filled(7, false);
 
   TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
-  TextEditingController _timeController = TextEditingController();
+  TextEditingController _timeController = TextEditingController(),
+      _nameController = TextEditingController(),
+      _desController = TextEditingController(),
+      _phoneController = TextEditingController(),
+      _clinicController = TextEditingController(),
+      _emailController = TextEditingController();
   String startTime = "9:00 AM", endTime = "5:00 PM";
 
-  validateForm(BuildContext context) {
+  validateForm(BuildContext context) async {
     if (_formKey.currentState.validate()) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Processing Data')));
+      FirebaseHomeProvider firebaseHomeProvider = FirebaseHomeProvider();
+      DoctorModel doctorModel = DoctorModel(
+        name: _nameController.text,
+        email: _emailController.text,
+        designation: _desController.text,
+        phone: _phoneController.text,
+        clinic: _clinicController.text,
+        startTime: startTime,
+        endTime: endTime,
+        role: ROLES.PRACTITIONER,
+      );
+      await firebaseHomeProvider.addUser(doctorModel.toUserJson());
+      await firebaseHomeProvider.addDoctor(doctorModel.toDoctorJson());
     }
   }
 
@@ -70,21 +90,28 @@ class _AddDoctorState extends State<AddDoctor> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _formField(title: "Enter Name"),
+                _formField(
+                  title: "Enter Name",
+                  controller: _nameController,
+                ),
                 _formField(
                   title: "Enter Email",
                   isEmail: true,
+                  controller: _emailController,
                 ),
                 _formField(
                   title: "Enter Phone",
                   isPhone: true,
+                  controller: _phoneController,
                 ),
                 _formField(
                   title: "Enter Designation",
+                  controller: _desController,
                 ),
                 _formField(
                   title: "Enter Clinic",
                   isNullable: true,
+                  controller: _clinicController,
                 ),
                 Text(
                   "Select days of availability",
@@ -196,6 +223,7 @@ class _AddDoctorState extends State<AddDoctor> {
 
   Widget _formField({
     @required String title,
+    @required TextEditingController controller,
     bool isNullable = false,
     bool isEmail = false,
     bool isPhone = false,
@@ -203,6 +231,7 @@ class _AddDoctorState extends State<AddDoctor> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           isDense: true,
           labelText: title,
