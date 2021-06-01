@@ -16,6 +16,12 @@ class FirebaseHomeProvider {
     print(ref.documentID);
   }
 
+  Future<void> addPatient(Map<dynamic, dynamic> patientMap) async {
+    DocumentReference ref =
+        await databaseReference.collection("patients").add(patientMap);
+    print(ref.documentID);
+  }
+
   void getData() {
     databaseReference
         .collection("books")

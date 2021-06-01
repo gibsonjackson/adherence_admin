@@ -5,15 +5,6 @@ import 'package:weekday_selector/weekday_selector.dart';
 
 class DoctorPage extends StatelessWidget {
   final DoctorModel doctor;
-  final values = [
-    false, // Sunday
-    true, // Monday
-    true, // Tuesday
-    true, // Wednesday
-    true, // Thursday
-    true, // Friday
-    false, // Saturday
-  ];
 
   DoctorPage({Key key, this.doctor}) : super(key: key);
 
@@ -43,17 +34,34 @@ class DoctorPage extends StatelessWidget {
                 ),
           ),
           SizedBox(height: 15),
-          _tableRow("Email", doctor.email),
-          _tableRow("Phone", doctor.phone),
+          TableRow("Email", doctor.email),
+          TableRow("Phone", doctor.phone),
           // _tableRow("Available Days", "Mon-Wed, 9-5", isWeekVisible: true),
           // _tableRow("Available Time", "9am-5pm"),
-          _tableRow("Location", doctor.clinic),
+          TableRow("Location", doctor.clinic),
         ],
       ),
     );
   }
+}
 
-  Widget _tableRow(String title, String val, {bool isWeekVisible = false}) {
+class TableRow extends StatelessWidget {
+  final String title, val;
+  final bool isWeekVisible;
+  final values = [
+    false, // Sunday
+    true, // Monday
+    true, // Tuesday
+    true, // Wednesday
+    true, // Thursday
+    true, // Friday
+    false, // Saturday
+  ];
+
+  TableRow(this.title, this.val, {this.isWeekVisible = false});
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(

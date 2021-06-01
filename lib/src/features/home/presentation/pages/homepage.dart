@@ -1,5 +1,7 @@
 import 'package:adherence_admin/src/features/home/presentation/pages/add_pages/add_doctor.dart';
-import 'package:adherence_admin/src/features/home/presentation/widgets/homepage_lists.dart';
+import 'package:adherence_admin/src/features/home/presentation/pages/add_pages/add_patient.dart';
+import 'package:adherence_admin/src/features/home/presentation/widgets/doctor_list.dart';
+import 'package:adherence_admin/src/features/home/presentation/widgets/patients_list.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boom_menu/flutter_boom_menu.dart';
@@ -12,6 +14,15 @@ class HomePage extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => AddDoctor(),
+        ),
+      );
+    }
+
+    openAddPatientsPage() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AddPatient(),
         ),
       );
     }
@@ -76,7 +87,7 @@ class HomePage extends StatelessWidget {
               subtitle: "Add a new Patient",
               // subTitleColor: Colors.white,
               // backgroundColor: Colors.deepOrange,
-              onTap: () => print('Patient'),
+              onTap: openAddPatientsPage,
             ),
           ],
         ),
@@ -84,7 +95,7 @@ class HomePage extends StatelessWidget {
           children: [
             DoctorsList(),
             Icon(Icons.directions_transit),
-            Icon(Icons.directions_bike),
+            PatientsList(),
           ],
         ),
       ),

@@ -68,6 +68,7 @@ class DoctorModel {
     data['name'] = this._name;
     data['email'] = this._email;
     data['designation'] = this._designation;
+    data['phone'] = this._phone;
     data['role'] = Utils().getRole(this._role);
     return data;
   }

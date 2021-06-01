@@ -10,7 +10,7 @@ class AddDoctor extends StatefulWidget {
 }
 
 class _AddDoctorState extends State<AddDoctor> {
-  final _formKey = GlobalKey<FormState>();
+  final _doctorFormKey = GlobalKey<FormState>();
   final values = List.filled(7, false);
 
   TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
@@ -26,9 +26,7 @@ class _AddDoctorState extends State<AddDoctor> {
 
   validateForm(BuildContext context) async {
     if (!isLoading) {
-      if (_formKey.currentState.validate()) {
-        // ScaffoldMessenger.of(context)
-        //     .showSnackBar(SnackBar(content: Text('Processing Data')));
+      if (_doctorFormKey.currentState.validate()) {
         FirebaseHomeProvider firebaseHomeProvider = FirebaseHomeProvider();
         DoctorModel doctorModel = DoctorModel(
           name: _nameController.text,
@@ -111,29 +109,29 @@ class _AddDoctorState extends State<AddDoctor> {
                   vertical: 20,
                 ),
                 child: Form(
-                  key: _formKey,
+                  key: _doctorFormKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _formField(
+                      MyFormField(
                         title: "Enter Name",
                         controller: _nameController,
                       ),
-                      _formField(
+                      MyFormField(
                         title: "Enter Email",
                         isEmail: true,
                         controller: _emailController,
                       ),
-                      _formField(
+                      MyFormField(
                         title: "Enter Phone",
                         isPhone: true,
                         controller: _phoneController,
                       ),
-                      _formField(
+                      MyFormField(
                         title: "Enter Designation",
                         controller: _desController,
                       ),
-                      _formField(
+                      MyFormField(
                         title: "Enter Clinic",
                         isNullable: true,
                         controller: _clinicController,
@@ -232,22 +230,10 @@ class _AddDoctorState extends State<AddDoctor> {
                       // ),
                       // SizedBox(height: 20),
                       // phone designation weeks time place
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            shape: MaterialStateProperty.all<
-                                RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(100.0),
-                              ),
-                            ),
-                          ),
-                          onPressed: () => validateForm(context),
-                          child: Text('Add Doctor'),
-                        ),
+                      MyButton(
+                        foo: () => validateForm(context),
+                        title: "Add Docotor",
                       ),
-                      SizedBox(height: 20),
                     ],
                   ),
                 ),
@@ -255,14 +241,25 @@ class _AddDoctorState extends State<AddDoctor> {
             ),
     );
   }
+}
 
-  Widget _formField({
-    @required String title,
-    @required TextEditingController controller,
-    bool isNullable = false,
-    bool isEmail = false,
-    bool isPhone = false,
-  }) {
+class MyFormField extends StatelessWidget {
+  final String title;
+  final TextEditingController controller;
+  final bool isNullable;
+  final bool isEmail;
+  final bool isPhone;
+
+  const MyFormField(
+      {Key key,
+      this.title,
+      this.controller,
+      this.isNullable = false,
+      this.isEmail = false,
+      this.isPhone = false})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: TextFormField(
@@ -300,6 +297,39 @@ class _AddDoctorState extends State<AddDoctor> {
           return null;
         },
       ),
+    );
+  }
+}
+
+class MyButton extends StatelessWidget {
+  final Function foo;
+  final String title;
+
+  const MyButton({
+    Key key,
+    @required this.foo,
+    @required this.title,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100.0),
+                ),
+              ),
+            ),
+            onPressed: foo,
+            child: Text(title),
+          ),
+        ),
+        SizedBox(height: 20),
+      ],
     );
   }
 }
