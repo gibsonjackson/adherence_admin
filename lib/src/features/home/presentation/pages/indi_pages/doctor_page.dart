@@ -34,18 +34,18 @@ class DoctorPage extends StatelessWidget {
                 ),
           ),
           SizedBox(height: 15),
-          TableRow("Email", doctor.email),
-          TableRow("Phone", doctor.phone),
+          MyTableRow("Email", doctor.email),
+          MyTableRow("Phone", doctor.phone),
           // _tableRow("Available Days", "Mon-Wed, 9-5", isWeekVisible: true),
           // _tableRow("Available Time", "9am-5pm"),
-          TableRow("Location", doctor.clinic),
+          MyTableRow("Location", doctor.clinic),
         ],
       ),
     );
   }
 }
 
-class TableRow extends StatelessWidget {
+class MyTableRow extends StatelessWidget {
   final String title, val;
   final bool isWeekVisible;
   final values = [
@@ -58,7 +58,7 @@ class TableRow extends StatelessWidget {
     false, // Saturday
   ];
 
-  TableRow(this.title, this.val, {this.isWeekVisible = false});
+  MyTableRow(this.title, this.val, {this.isWeekVisible = false});
 
   @override
   Widget build(BuildContext context) {

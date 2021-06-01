@@ -9,7 +9,10 @@ class DoctorsList extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance.collection('doctors').snapshots(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
+        if (!snapshot.hasData)
+          return Center(child: Text("No Patients yet!"));
+        else if (snapshot.data.documents.length == 0)
+          return Center(child: Text("No Patients yet!"));
 
         return _buildList(context, snapshot.data.documents);
       },

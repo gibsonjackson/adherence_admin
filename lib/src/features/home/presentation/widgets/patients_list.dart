@@ -1,5 +1,5 @@
-import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
-import 'package:adherence_admin/src/features/home/presentation/widgets/cards/doctors_card.dart';
+import 'package:adherence_admin/src/features/home/data/models/patient_model.dart';
+import 'package:adherence_admin/src/features/home/presentation/widgets/cards/patient_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +7,12 @@ class PatientsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('doctors').snapshots(),
+      stream: Firestore.instance.collection('patients').snapshots(),
       builder: (context, snapshot) {
-        if (!snapshot.hasData) return Text("No users yet!");
+        if (!snapshot.hasData)
+          return Text("No users yet!");
+        else if (snapshot.data.documents.length == 0)
+          return Center(child: Text("No Patients yet!"));
 
         return _buildList(context, snapshot.data.documents);
       },
@@ -24,7 +27,7 @@ class PatientsList extends StatelessWidget {
   }
 
   Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
-    final doctor = DoctorModel.fromSnapshot(data);
-    return DoctorsCard(doctorModel: doctor);
+    final patienModel = PatientModel.fromSnapshot(data);
+    return PatientCard(patientModel: patienModel);
   }
 }

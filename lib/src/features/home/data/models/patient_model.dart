@@ -1,5 +1,6 @@
 import 'package:adherence_admin/src/utils/res/my_enums.dart';
 import 'package:adherence_admin/src/utils/res/utils.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PatientModel {
   String _name;
@@ -47,4 +48,7 @@ class PatientModel {
     data['role'] = Utils().getRole(this._role);
     return data;
   }
+
+  PatientModel.fromSnapshot(DocumentSnapshot snapshot)
+      : this.fromJson(snapshot.data);
 }
