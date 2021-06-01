@@ -12,7 +12,7 @@ class DoctorsCard extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => DoctorPage(),
+          builder: (context) => DoctorPage(doctor: doctorModel),
         ),
       );
     }

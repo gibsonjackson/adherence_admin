@@ -1,8 +1,10 @@
+import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
 import 'package:adherence_admin/src/utils/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
 class DoctorPage extends StatelessWidget {
+  final DoctorModel doctor;
   final values = [
     false, // Sunday
     true, // Monday
@@ -12,6 +14,9 @@ class DoctorPage extends StatelessWidget {
     true, // Friday
     false, // Saturday
   ];
+
+  DoctorPage({Key key, this.doctor}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +30,24 @@ class DoctorPage extends StatelessWidget {
           ),
           SizedBox(height: 5),
           Text(
-            "Aayush Jain",
-            style: Theme.of(context).textTheme.headline6.copyWith(),
+            doctor.name,
+            style: Theme.of(context).textTheme.headline6.copyWith(
+                  color: primaryColor,
+                ),
           ),
           SizedBox(height: 5),
           Text(
-            "Psychologist",
-            style: Theme.of(context).textTheme.subtitle1.copyWith(),
+            doctor.designation,
+            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                  color: accentColor,
+                ),
           ),
           SizedBox(height: 15),
-          _tableRow("Email", "jaayushmax@gmail.com"),
-          _tableRow("Phone", "9810115481"),
-          _tableRow("Available Days", "Mon-Wed, 9-5", isWeekVisible: true),
-          _tableRow("Available Time", "9am-5pm"),
-          _tableRow("Location", "Ruby Clinic"),
+          _tableRow("Email", doctor.email),
+          _tableRow("Phone", doctor.phone),
+          // _tableRow("Available Days", "Mon-Wed, 9-5", isWeekVisible: true),
+          // _tableRow("Available Time", "9am-5pm"),
+          _tableRow("Location", doctor.clinic),
         ],
       ),
     );

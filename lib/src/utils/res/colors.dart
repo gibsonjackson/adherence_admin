@@ -20,7 +20,7 @@ const scaffoldBackColorDark = Color(0xffE9F0FF);
 
 var textLightGrey = Color(0xff908898);
 
-const upArrowColor = Color(0xff00C48C);
-const downArrowColor = Color(0xffD22244);
+const successColor = Color(0xff00C48C);
+const failureColor = Color(0xffD22244);
 
-const error_color = downArrowColor;
+const error_color = failureColor;
