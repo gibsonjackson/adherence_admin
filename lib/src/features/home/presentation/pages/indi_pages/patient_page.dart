@@ -36,6 +36,7 @@ class PatientPage extends StatelessWidget {
           SizedBox(height: 15),
           MyTableRow("Email", patientModel.email),
           MyTableRow("Phone", patientModel.phone),
+          MyTableRow("Doctor", patientModel.doctor),
         ],
       ),
     );

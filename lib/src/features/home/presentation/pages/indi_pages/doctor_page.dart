@@ -1,4 +1,5 @@
 import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
+import 'package:adherence_admin/src/features/home/presentation/widgets/patients_list.dart';
 import 'package:adherence_admin/src/utils/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:weekday_selector/weekday_selector.dart';
@@ -10,6 +11,21 @@ class DoctorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    selectPatient() {
+      Navigator.of(context)
+          .push(new MaterialPageRoute<Null>(
+              builder: (BuildContext context) {
+                return PatientsList(
+                  isAddressReturnalable: true,
+                  doctorModel: doctor,
+                );
+              },
+              fullscreenDialog: true))
+          .then((value) {
+        print(value);
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -39,6 +55,16 @@ class DoctorPage extends StatelessWidget {
           // _tableRow("Available Days", "Mon-Wed, 9-5", isWeekVisible: true),
           // _tableRow("Available Time", "9am-5pm"),
           MyTableRow("Location", doctor.clinic),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: selectPatient,
+                child: Text("Add Patient"),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -93,7 +119,7 @@ class MyTableRow extends StatelessWidget {
                   : Text(
                       val,
                       style: TextStyle(
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
             ],

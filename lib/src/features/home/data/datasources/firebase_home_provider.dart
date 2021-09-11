@@ -22,28 +22,46 @@ class FirebaseHomeProvider {
     print(ref.id);
   }
 
-  void getData() {
-    databaseReference.collection("books").get().then((QuerySnapshot snapshot) {
-      snapshot.docs.forEach((f) => print('${f.data}}'));
+  Future<void> addDoctorToPatient(
+      String patientEmail, String doctorEmail) async {
+    print("aaa");
+    await databaseReference
+        .collection('patients')
+        .where('email', isEqualTo: patientEmail)
+        .get()
+        .then((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((f) {
+        print(f.data);
+        databaseReference
+            .collection('patients')
+            .doc(f.id)
+            .update({"doctor": doctorEmail});
+      });
     });
   }
 
-  void updateData() {
-    try {
-      databaseReference
-          .collection('books')
-          .doc('1')
-          .update({'description': 'Head First Flutter'});
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  // void getData() {
+  //   databaseReference.collection("books").get().then((QuerySnapshot snapshot) {
+  //     snapshot.docs.forEach((f) => print('${f.data}}'));
+  //   });
+  // }
 
-  void deleteData() {
-    try {
-      databaseReference.collection('books').doc('1').delete();
-    } catch (e) {
-      print(e.toString());
-    }
-  }
+  // void updateData() {
+  //   try {
+  //     databaseReference
+  //         .collection('books')
+  //         .doc('1')
+  //         .update({'description': 'Head First Flutter'});
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
+
+  // void deleteData() {
+  //   try {
+  //     databaseReference.collection('books').doc('1').delete();
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 }
