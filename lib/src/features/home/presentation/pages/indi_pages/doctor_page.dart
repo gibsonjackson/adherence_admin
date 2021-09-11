@@ -1,8 +1,10 @@
 import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
-import 'package:adherence_admin/src/features/home/presentation/widgets/patients_list.dart';
+import 'package:adherence_admin/src/features/home/presentation/pages/indi_pages/add_doctor_tp_patient.dart';
+import 'package:adherence_admin/src/features/home/presentation/widgets/patients_for_doctor.dart';
 import 'package:adherence_admin/src/utils/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:weekday_selector/weekday_selector.dart';
+import '../../widgets/patients_for_doctor.dart';
 
 class DoctorPage extends StatelessWidget {
   final DoctorModel doctor;
@@ -15,10 +17,7 @@ class DoctorPage extends StatelessWidget {
       Navigator.of(context)
           .push(new MaterialPageRoute<Null>(
               builder: (BuildContext context) {
-                return PatientsList(
-                  isAddressReturnalable: true,
-                  doctorModel: doctor,
-                );
+                return AddDoctorToPatient(doctor: doctor);
               },
               fullscreenDialog: true))
           .then((value) {
@@ -63,6 +62,11 @@ class DoctorPage extends StatelessWidget {
                 onPressed: selectPatient,
                 child: Text("Add Patient"),
               ),
+            ),
+          ),
+          Expanded(
+            child: PatientsForDoctor(
+              doctorModel: doctor,
             ),
           )
         ],
