@@ -7,14 +7,14 @@ class PatientsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('patients').snapshots(),
+      stream: FirebaseFirestore.instance.collection('patients').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData)
-          return Text("No users yet!");
-        else if (snapshot.data.documents.length == 0)
+          return Center(child: Text("No Patients yet!"));
+        else if (snapshot.data.docs.length == 0)
           return Center(child: Text("No Patients yet!"));
 
-        return _buildList(context, snapshot.data.documents);
+        return _buildList(context, snapshot.data.docs);
       },
     );
   }
