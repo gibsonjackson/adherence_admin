@@ -1,5 +1,7 @@
+import 'package:adherence_admin/src/features/auth/data/repositories/login_repo.dart';
 import 'package:adherence_admin/src/features/home/data/datasources/firebase_home_provider.dart';
 import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart';
+import 'package:adherence_admin/src/utils/my_function.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
 import 'package:weekday_selector/weekday_selector.dart';
@@ -28,6 +30,7 @@ class _AddDoctorState extends State<AddDoctor> {
     if (!isLoading) {
       if (_doctorFormKey.currentState.validate()) {
         FirebaseHomeProvider firebaseHomeProvider = FirebaseHomeProvider();
+        String password = MyFunctions().generatePassword();
         DoctorModel doctorModel = DoctorModel(
           name: _nameController.text,
           email: _emailController.text,
@@ -36,12 +39,15 @@ class _AddDoctorState extends State<AddDoctor> {
           clinic: _clinicController.text,
           startTime: startTime,
           endTime: endTime,
+          password: password,
           role: ROLES.PRACTITIONER,
         );
         setState(() {
           isLoading = true;
         });
         await firebaseHomeProvider.addUser(doctorModel.toUserJson());
+        await LoginRepo()
+            .registerWithEmailPassword(_emailController.text, password);
         await firebaseHomeProvider
             .addDoctor(doctorModel.toDoctorJson())
             .then((value) {

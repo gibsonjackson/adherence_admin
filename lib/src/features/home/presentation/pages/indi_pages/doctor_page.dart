@@ -54,6 +54,8 @@ class DoctorPage extends StatelessWidget {
           // _tableRow("Available Days", "Mon-Wed, 9-5", isWeekVisible: true),
           // _tableRow("Available Time", "9am-5pm"),
           MyTableRow("Location", doctor.clinic),
+          MyTableRow(
+              "Password", (doctor.password != null ? doctor.password : "")),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SizedBox(

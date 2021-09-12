@@ -24,6 +24,7 @@ class DoctorModel {
   String _clinic;
   String _startTime;
   String _endTime;
+  String _password;
   ROLES _role;
 
   DoctorModel({
@@ -34,6 +35,7 @@ class DoctorModel {
     @required String clinic,
     @required String startTime,
     @required String endTime,
+    @required String password,
     @required ROLES role,
   }) {
     this._name = name;
@@ -43,6 +45,7 @@ class DoctorModel {
     this._clinic = clinic;
     this._startTime = startTime;
     this._endTime = endTime;
+    this._password = password;
     this._role = role;
   }
 
@@ -60,6 +63,8 @@ class DoctorModel {
   set startTime(String startTime) => _startTime = startTime;
   String get endTime => _endTime;
   set endTime(String endTime) => _endTime = endTime;
+  String get password => _password;
+  set password(String password) => _password = password;
   ROLES get role => _role;
   set role(ROLES role) => _role = role;
 
@@ -69,6 +74,7 @@ class DoctorModel {
     data['email'] = this._email;
     data['designation'] = this._designation;
     data['phone'] = this._phone;
+    data['password'] = this._password;
     data['role'] = Utils().getRole(this._role);
     return data;
   }
@@ -82,6 +88,7 @@ class DoctorModel {
     data['clinic'] = this._clinic;
     data['startTime'] = this._startTime;
     data['endTime'] = this._endTime;
+    data['password'] = this._password;
     data['role'] = Utils().getRole(this._role);
     return data;
   }
@@ -94,6 +101,7 @@ class DoctorModel {
     _clinic = json['clinic'];
     _startTime = json['startTime'];
     _endTime = json['endTime'];
+    _password = json['password'];
   }
 
   DoctorModel.fromSnapshot(DocumentSnapshot snapshot)
