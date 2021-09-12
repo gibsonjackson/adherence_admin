@@ -13,6 +13,9 @@ class DoctorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("awsm");
+    print(doctor.password);
+
     selectPatient() {
       Navigator.of(context)
           .push(new MaterialPageRoute<Null>(
