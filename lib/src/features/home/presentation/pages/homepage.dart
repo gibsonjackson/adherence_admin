@@ -4,7 +4,7 @@ import 'package:adherence_admin/src/features/home/presentation/widgets/doctor_li
 import 'package:adherence_admin/src/features/home/presentation/widgets/patients_list.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boom_menu/flutter_boom_menu.dart';
+// import 'package:flutter_boom_menu/flutter_boom_menu.dart' as boom;
 
 class HomePage extends StatelessWidget {
   @override
@@ -41,55 +41,106 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: BoomMenu(
-          // animatedIcon: AnimatedIcons.add_event,
-          child: Icon(Icons.add),
-          animatedIconTheme: IconThemeData(size: 22.0),
-          backgroundColor: accentColor,
-          //child: Icon(Icons.add),
-          onOpen: () => print('OPENING DIAL'),
-          onClose: () => print('DIAL CLOSED'),
-          scrollVisible: true,
-          overlayColor: Colors.black,
-          overlayOpacity: 0.7,
-          children: [
-            MenuItem(
-              child: Icon(
-                Icons.local_hospital_rounded,
-                color: Colors.green,
+        floatingActionButton: Align(
+          alignment: Alignment.bottomCenter,
+          child: Row(
+            // animatedIcon: AnimatedIcons.add_event,
+            // child: Icon(Icons.add),
+            // animatedIconTheme: IconThemeData(size: 22.0),
+            // backgroundColor: accentColor,
+            // //child: Icon(Icons.add),
+            // onOpen: () => print('OPENING DIAL'),
+            // onClose: () => print('DIAL CLOSED'),
+            // scrollVisible: true,
+            // overlayColor: Colors.black,
+            // overlayOpacity: 0.7,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  openAddDoctorPage();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.blueAccent
+                  ),
+                  child: Padding(
+                      padding:EdgeInsets.only(
+                          left: 14, right: 14, top: 15, bottom: 15),
+                      child: new Text("Add Doctor")),
+                ),
               ),
-              title: "Add Doctor",
-              // titleColor: Colors.white,
-              subtitle: "Add a doctor or medical professional",
-              // subTitleColor: Colors.white,
-              // backgroundColor: Colors.deepOrange,
-              onTap: openAddDoctorPage,
-            ),
-            MenuItem(
-              child: Icon(
-                Icons.family_restroom_rounded,
-                color: Colors.blue,
+              GestureDetector(
+                onTap: () {
+                  openAddPatientsPage();
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.blueAccent
+                  ),
+                  child: Padding(
+                    padding:EdgeInsets.only(
+                        left: 14, right: 14, top: 15, bottom: 15),
+                child: new Text("Add Patient"),
+                  )
+                )
               ),
-              title: "Add Parent",
-              // titleColor: Colors.white,
-              subtitle: "Add the parent or guardian of the patient",
-              // subTitleColor: Colors.white,
-              // backgroundColor: Colors.deepOrange,
-              onTap: () => print('Parent'),
-            ),
-            MenuItem(
-              child: Icon(
-                Icons.account_circle_rounded,
-                color: Colors.purple,
+              GestureDetector(
+                onTap: () {
+                  print('Parent');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.blueAccent
+                  ),
+                  child: Padding(
+                    padding:EdgeInsets.only(
+                        left: 14, right: 14, top: 15, bottom: 15),
+                child: new Text("Add Parent"),
+                  )
+                )
               ),
-              title: "Add Patient",
-              // titleColor: Colors.white,
-              subtitle: "Add a new Patient",
-              // subTitleColor: Colors.white,
-              // backgroundColor: Colors.deepOrange,
-              onTap: openAddPatientsPage,
-            ),
-          ],
+              // boom.MenuItem(
+              //   child: Icon(
+              //     Icons.local_hospital_rounded,
+              //     color: Colors.green,
+              //   ),
+              //   title: "Add Doctor",
+              //   // titleColor: Colors.white,
+              //   subtitle: "Add a doctor or medical professional",
+              //   // subTitleColor: Colors.white,
+              //   // backgroundColor: Colors.deepOrange,
+              //   onTap: openAddDoctorPage,
+              // ),
+              // boom.MenuItem(
+              //   child: Icon(
+              //     Icons.family_restroom_rounded,
+              //     color: Colors.blue,
+              //   ),
+              //   title: "Add Parent",
+              //   // titleColor: Colors.white,
+              //   subtitle: "Add the parent or guardian of the patient",
+              //   // subTitleColor: Colors.white,
+              //   // backgroundColor: Colors.deepOrange,
+              //   onTap: () => print('Parent'),
+              // ),
+              // boom.MenuItem(
+              //   child: Icon(
+              //     Icons.account_circle_rounded,
+              //     color: Colors.purple,
+              //   ),
+              //   title: "Add Patient",
+              //   // titleColor: Colors.white,
+              //   subtitle: "Add a new Patient",
+              //   // subTitleColor: Colors.white,
+              //   // backgroundColor: Colors.deepOrange,
+              //   onTap: openAddPatientsPage,
+              // ),
+            ],
+          ),
         ),
         body: TabBarView(
           children: [

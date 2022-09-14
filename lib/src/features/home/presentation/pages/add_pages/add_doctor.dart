@@ -238,7 +238,7 @@ class _AddDoctorState extends State<AddDoctor> {
                       // phone designation weeks time place
                       MyButton(
                         foo: () => validateForm(context),
-                        title: "Add Docotor",
+                        title: "Add Doctor",
                       ),
                     ],
                   ),
