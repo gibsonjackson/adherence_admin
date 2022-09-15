@@ -2,6 +2,7 @@ import 'package:adherence_admin/src/features/home/data/datasources/firebase_home
 import 'package:adherence_admin/src/features/home/data/models/patient_model.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 import 'add_doctor.dart';
 
@@ -45,6 +46,12 @@ class _AddPatientState extends State<AddPatient> {
           );
           Navigator.of(context).pop();
         });
+        final Email send_email = Email(
+          body: '\n\nEmail ID :- '+patientModel.email+'\n\nPhone No :- '+patientModel.phone,
+          subject: 'Patient Login Credentials',
+          recipients: [patientModel.email],
+        );
+        await FlutterEmailSender.send(send_email);
 
         setState(() {
           isLoading = false;

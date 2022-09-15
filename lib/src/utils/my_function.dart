@@ -6,7 +6,7 @@ class MyFunctions {
     bool isNumber = true,
     bool isSpecial = true,
   }) {
-    final length = 20;
+    final length = 10;
     final letterLowerCase = "abcdefghijklmnopqrstuvwxyz";
     final letterUpperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     final number = '0123456789';

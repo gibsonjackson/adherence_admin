@@ -4,6 +4,7 @@ import 'package:adherence_admin/src/features/home/data/models/doctor_model.dart'
 import 'package:adherence_admin/src/utils/my_function.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:weekday_selector/weekday_selector.dart';
 
 class AddDoctor extends StatefulWidget {
@@ -61,7 +62,12 @@ class _AddDoctorState extends State<AddDoctor> {
           );
           Navigator.of(context).pop();
         });
-
+        final Email send_email = Email(
+          body: '\n\nEmail ID :- '+doctorModel.email+'\n\nPassword :- '+doctorModel.password,
+          subject: 'Doctor Login Credentials',
+          recipients: [doctorModel.email],
+        );
+        await FlutterEmailSender.send(send_email);
         setState(() {
           isLoading = false;
         });
