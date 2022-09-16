@@ -81,7 +81,7 @@ class DoctorPage extends StatelessWidget {
 }
 
 class MyTableRow extends StatelessWidget {
-  final String title, val;
+  String title, val;
   final bool isWeekVisible;
   final values = [
     false, // Sunday
@@ -97,6 +97,7 @@ class MyTableRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(

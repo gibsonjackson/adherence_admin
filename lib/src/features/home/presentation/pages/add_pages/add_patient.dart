@@ -4,6 +4,7 @@ import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
+import '../../../../../utils/my_function.dart';
 import 'add_doctor.dart';
 
 class AddPatient extends StatefulWidget {
@@ -23,10 +24,13 @@ class _AddPatientState extends State<AddPatient> {
     if (!isLoading) {
       if (_patientFormKey.currentState.validate()) {
         FirebaseHomeProvider firebaseHomeProvider = FirebaseHomeProvider();
+        String password = MyFunctions().generatePassword();
         PatientModel patientModel = PatientModel(
           name: _nameController.text,
           phone: _phoneController.text,
           email: _emailController.text,
+          doctor: "Not assigned yet",
+          password: password,
           role: ROLES.PATIENT,
         );
         setState(() {
@@ -47,7 +51,7 @@ class _AddPatientState extends State<AddPatient> {
           Navigator.of(context).pop();
         });
         final Email send_email = Email(
-          body: '\n\nEmail ID :- '+patientModel.email+'\n\nPhone No :- '+patientModel.phone,
+          body: '\n\nEmail ID :- '+patientModel.email+'\n\nPhone No :- '+patientModel.phone+'\n\nPassword :- '+patientModel.password,
           subject: 'Patient Login Credentials',
           recipients: [patientModel.email],
         );

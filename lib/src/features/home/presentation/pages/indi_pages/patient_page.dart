@@ -36,7 +36,8 @@ class PatientPage extends StatelessWidget {
           SizedBox(height: 15),
           MyTableRow("Email", patientModel.email),
           MyTableRow("Phone", patientModel.phone),
-          MyTableRow("Doctor", patientModel.doctor),
+          MyTableRow("Password", patientModel.password),
+          MyTableRow("Doctor", patientModel.doctor==Null?"No Doctor Assigned yet":patientModel.doctor),
         ],
       ),
     );
