@@ -4,6 +4,9 @@ import 'package:adherence_admin/src/features/home/presentation/widgets/doctor_li
 import 'package:adherence_admin/src/features/home/presentation/widgets/patients_list.dart';
 import 'package:adherence_admin/src/utils/res/res.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/parents_list.dart';
+import 'add_pages/add_parent.dart';
 // import 'package:flutter_boom_menu/flutter_boom_menu.dart' as boom;
 
 class HomePage extends StatelessWidget {
@@ -26,6 +29,16 @@ class HomePage extends StatelessWidget {
         ),
       );
     }
+
+    openAddParentsPage() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AddParent(),
+        ),
+      );
+    }
+
 
     return DefaultTabController(
       length: 3,
@@ -90,6 +103,7 @@ class HomePage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   print('Parent');
+                  openAddParentsPage();
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -145,7 +159,7 @@ class HomePage extends StatelessWidget {
         body: TabBarView(
           children: [
             DoctorsList(),
-            Icon(Icons.directions_transit),
+            ParentsList(),
             PatientsList(),
           ],
         ),
