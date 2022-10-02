@@ -67,6 +67,18 @@ class ParentModel {
     _phone = json['phone'];
     _password = json['password'];
   }
+  List<ParentModel> dataListFromSnapshot(QuerySnapshot querySnapshot) {
+    return querySnapshot.docs.map((snapshot) {
+      final Map<String, dynamic> dataMap =
+      snapshot.data() as Map<String, dynamic>;
+
+      return ParentModel(
+          name: dataMap['name'],
+          email: dataMap['email'],
+          phone: dataMap['phone'],
+          password: dataMap['password']);
+    }).toList();
+  }
 
   ParentModel.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromJson(snapshot.data());

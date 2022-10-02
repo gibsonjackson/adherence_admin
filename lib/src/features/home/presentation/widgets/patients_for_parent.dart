@@ -14,8 +14,8 @@ class PatientsForParent extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
           .collection('patients')
-          .where('parent', isEqualTo: doctorModel.email)
-          .snapshots(),
+          .where('parent', isEqualTo: doctorModel.email).
+          snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(child: Text("Add Patients for the parent"));

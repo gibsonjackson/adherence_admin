@@ -54,7 +54,7 @@ class PatientsPList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('patients').snapshots(),
+      stream: FirebaseFirestore.instance.collection('patients').orderBy('name').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(child: Text("No Patients yet!"));

@@ -25,7 +25,7 @@ class ParentsList extends StatelessWidget {
     // });
     // return _buildList(context, blah);
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('parents').snapshots(),
+      stream: FirebaseFirestore.instance.collection('parents').orderBy('name').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(child: Text("No Parents yet!"));

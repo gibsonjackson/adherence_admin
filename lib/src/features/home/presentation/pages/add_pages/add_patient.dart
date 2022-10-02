@@ -30,6 +30,7 @@ class _AddPatientState extends State<AddPatient> {
           phone: _phoneController.text,
           email: _emailController.text,
           doctor: "Not assigned yet",
+          parent: "Not assigned yet",
           password: password,
           role: ROLES.PATIENT,
         );

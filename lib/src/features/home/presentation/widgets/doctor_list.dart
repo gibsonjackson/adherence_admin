@@ -23,7 +23,7 @@ class DoctorsList extends StatelessWidget {
     // });
     // return _buildList(context, blah);
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('doctors').snapshots(),
+      stream: FirebaseFirestore.instance.collection('doctors').orderBy('name').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData)
           return Center(child: Text("No Doctors yet!"));

@@ -31,6 +31,8 @@ class PatientModel {
   String get doctor => _doctor;
   set doctor(String doctor) => _doctor = doctor;
   String get password => _password;
+  set parent(String parent) => _parent = parent;
+  String get parent => _parent;
   set password(String password) => _password = password;
   ROLES get role => _role;
   set role(ROLES role) => _role = role;
@@ -41,6 +43,7 @@ class PatientModel {
     _phone = json['phone'];
     _doctor = json["doctor"];
     _password = json['password'];
+    _parent = json['parent'];
   }
 
   Map<String, dynamic> toUserJson() {
@@ -50,6 +53,7 @@ class PatientModel {
     data['phone'] = this._phone;
     data['password'] = this._password;
     data['doctor'] = this._doctor;
+    data['parent'] = this._parent;
     data['designation'] = "";
     data['role'] = Utils().getRole(this._role);
     return data;
@@ -62,6 +66,7 @@ class PatientModel {
     data['phone'] = this._phone;
     data['password'] = this._password;
     data['doctor'] = this._doctor;
+    data['parent'] = this._parent;
     data['role'] = Utils().getRole(this._role);
     return data;
   }
