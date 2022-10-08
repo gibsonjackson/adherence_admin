@@ -81,7 +81,7 @@ class HomePage extends StatelessWidget {
                   child: Padding(
                       padding:EdgeInsets.only(
                           left: 14, right: 14, top: 15, bottom: 15),
-                      child: new Text("Add Doctor")),
+                      child: new Text("Add Doctor",style: TextStyle(color: white),)),
                 ),
               ),
               GestureDetector(
@@ -96,13 +96,12 @@ class HomePage extends StatelessWidget {
                   child: Padding(
                     padding:EdgeInsets.only(
                         left: 14, right: 14, top: 15, bottom: 15),
-                child: new Text("Add Patient"),
+                child: new Text("Add Patient",style: TextStyle(color: white)),
                   )
                 )
               ),
               GestureDetector(
                 onTap: () {
-                  print('Parent');
                   openAddParentsPage();
                 },
                 child: Container(
@@ -113,7 +112,7 @@ class HomePage extends StatelessWidget {
                   child: Padding(
                     padding:EdgeInsets.only(
                         left: 14, right: 14, top: 15, bottom: 15),
-                child: new Text("Add Parent"),
+                child: new Text("Add Parent",style: TextStyle(color: white)),
                   )
                 )
               ),
