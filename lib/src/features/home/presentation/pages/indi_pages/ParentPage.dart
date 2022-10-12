@@ -60,7 +60,7 @@ class ParentPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: selectPatient,
-                child: Text("Add Patient"),
+                child: Text("Add Child"),
               ),
             ),
           ),

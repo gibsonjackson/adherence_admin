@@ -76,6 +76,15 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
+
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       color: Colors.blueAccent
                   ),
                   child: Padding(
@@ -84,22 +93,7 @@ class HomePage extends StatelessWidget {
                       child: new Text("Add Doctor",style: TextStyle(color: white),)),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  openAddPatientsPage();
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.blueAccent
-                  ),
-                  child: Padding(
-                    padding:EdgeInsets.only(
-                        left: 14, right: 14, top: 15, bottom: 15),
-                child: new Text("Add Patient",style: TextStyle(color: white)),
-                  )
-                )
-              ),
+
               GestureDetector(
                 onTap: () {
                   openAddParentsPage();
@@ -107,6 +101,15 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
+
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                       color: Colors.blueAccent
                   ),
                   child: Padding(
@@ -115,6 +118,35 @@ class HomePage extends StatelessWidget {
                 child: new Text("Add Parent",style: TextStyle(color: white)),
                   )
                 )
+              ),
+              GestureDetector(
+                  onTap: () {
+                    openAddPatientsPage();
+                  },
+                  child: Container(
+
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset: Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+
+                          color: Colors.blueAccent
+
+
+                      ),
+
+                      child: Padding(
+                        padding:EdgeInsets.only(
+                            left: 14, right: 14, top: 15, bottom: 15),
+                        child: new Text("Add Patient",style: TextStyle(color: white)),
+                      )
+                  )
               ),
               // boom.MenuItem(
               //   child: Icon(
